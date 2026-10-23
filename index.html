@@ -1,192 +1,211 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <title>Portal Kampus Fiktif - 24781088</title>
-    <style>
-        body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 20px; }
-        .container { max-width: 800px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin: auto; }
-        h1, h2, h3 { color: #333; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; }
-        input, select, textarea { width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
-        button { background: #007bff; color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 4px; }
-        button:hover { background: #0056b3; }
-        .section { display: none; margin-top: 20px; border-top: 1px solid #ddd; padding-top: 20px; }
-        .active { display: block; }
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-        th { background: #f8f9fa; }
-        .alert { background: #ffeeba; padding: 10px; margin-bottom: 15px; border-radius: 4px; color: #856404; }
-    </style>
-</head>
-<body>
 
-<div class="container">
-    <h1>Portal Akademik Kampus Fiktif (NPM: 24781088)</h1>
-    <div class="alert">
-        <strong>Simulasi Keamanan:</strong> Portal latihan ini menggunakan data sintetis untuk pemeriksaan keamanan fitur akademik. Lakukan pengujian hanya pada portal ini dan jangan memasukkan data pribadi atau data nyata.
-    </div>
+* {
+    box-sizing: border-box;
+}
 
-    <!-- Panel Login -->
-    <div id="login-section" class="section active">
-        <h2>Login Portal Akademik</h2>
-        <div class="form-group">
-            <label>Pilih Peran Akun Sintetis:</label>
-            <select id="role-select">
-                <option value="mahasiswa">Mahasiswa (Budi - 24781088)</option>
-                <option value="dosen">Dosen (Dr. Siti - DSN01)</option>
-                <option value="admin">Admin Sistem (Admin01)</option>
-            </select>
-        </div>
-        <button onclick="login()">Masuk ke Portal</button>
-    </div>
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #fff7ed, #ffedd5);
+    color: #4a3528;
+    margin: 0;
+    padding: 30px 16px;
+    min-height: 100vh;
+}
 
-    <!-- Panel Dashboard Mahasiswa -->
-    <div id="mahasiswa-section" class="section">
-        <h2>Dashboard Mahasiswa</h2>
-        <p>Selamat datang, <b>Budi (NPM: 24781088)</b></p>
-        
-        <!-- 1. Unggah Tugas -->
-        <h3>Unggah Tugas Kuliah</h3>
-        <div class="form-group">
-            <label>Pilih Mata Kuliah:</label>
-            <select id="mk-tugas">
-                <option>Keamanan Perangkat Lunak</option>
-                <option>Pemrograman Web</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label>Pilih Berkas Tugas (PDF / DOCX / ZIP):</label>
-            <input type="file" id="file-tugas">
-        </div>
-        <button onclick="uploadTugas()">Kirim Tugas</button>
-        <p id="status-upload" style="color: green; font-weight: bold; margin-top: 5px;"></p>
+.container {
+    max-width: 850px;
+    background: #ffffff;
+    padding: 28px;
+    border-radius: 18px;
+    box-shadow: 0 8px 28px rgba(154, 83, 24, 0.10);
+    margin: auto;
+    border: 1px solid #fed7aa;
+}
 
-        <!-- 2. Transkrip Nilai (IDOR) -->
-        <h3>Transkrip Nilai Mahasiswa</h3>
-        <p>Masukkan ID / NPM mahasiswa untuk melihat transkrip nilai.</p>
-        <div class="form-group">
-            <label>ID / NPM Mahasiswa:</label>
-            <input type="text" id="target-npm" value="24781088">
-            <button onclick="loadNilai()">Muat Nilai</button>
-        </div>
-        <div id="nilai-output">
-            <table>
-                <tr><th>Mata Kuliah</th><th>Nilai</th></tr>
-                <tr><td>Keamanan Perangkat Lunak</td><td>A (88)</td></tr>
-                <tr><td>Pemrograman Web</td><td>AB (85)</td></tr>
-            </table>
-        </div>
+h1 {
+    color: #c25b12;
+    text-align: center;
+    font-size: 27px;
+    margin-top: 5px;
+    margin-bottom: 24px;
+}
 
-        <!-- 3. Forum Diskusi (Stored XSS) -->
-        <h3>Forum Diskusi Publik</h3>
-        <div class="form-group">
-            <textarea id="pesan-diskusi" placeholder="Tulis komentar atau pertanyaan..."></textarea>
-            <button onclick="kirimDiskusi()">Kirim Pesan</button>
-        </div>
-        <h4>Dinding Diskusi:</h4>
-        <div id="wall-diskusi" style="background: #fafafa; padding: 10px; border: 1px solid #eee;">
-            <p><b>Siti:</b> Halo teman-teman, apakah tugas minggu ini sudah dikumpul?</p>
-        </div>
-        <br>
-        <button style="background: #6c757d;" onclick="logout()">Logout</button>
-    </div>
+h2 {
+    color: #c25b12;
+    border-bottom: 2px solid #ffedd5;
+    padding-bottom: 10px;
+}
 
-    <!-- Panel Dashboard Dosen -->
-    <div id="dosen-section" class="section">
-        <h2>Dashboard Dosen</h2>
-        <p>Selamat datang, <b>Dr. Siti (Dosen Pengampu)</b></p>
-        <p>Gunakan panel ini untuk memasukkan atau memperbarui nilai mahasiswa.</p>
-        <div class="form-group">
-            <label>NPM Mahasiswa:</label>
-            <input type="text" id="input-npm-dosen" placeholder="Contoh: 24781088">
-        </div>
-        <div class="form-group">
-            <label>Nilai Baru:</label>
-            <input type="text" id="input-nilai-dosen" placeholder="Contoh: A (90)">
-        </div>
-        <button onclick="simpanNilaiDosen()">Simpan Nilai</button>
-        <p id="status-dosen" style="color: green; font-weight: bold; margin-top: 5px;"></p>
-        <br>
-        <button style="background: #6c757d;" onclick="logout()">Logout</button>
-    </div>
+h3 {
+    color: #d97706;
+    margin-top: 28px;
+}
 
-    <!-- Panel Dashboard Admin -->
-    <div id="admin-section" class="section">
-        <h2>Dashboard Admin</h2>
-        <p>Selamat datang, <b>Administrator Sistem</b></p>
-        <p>Pengelolaan data akun pengguna sintetis:</p>
-        <table>
-            <tr><th>Username / NPM</th><th>Peran</th><th>Status Akun</th></tr>
-            <tr><td>Budi (24781088)</td><td>Mahasiswa</td><td>Aktif</td></tr>
-            <tr><td>Dr. Siti (DSN01)</td><td>Dosen</td><td>Aktif</td></tr>
-            <tr><td>Admin01</td><td>Admin Sistem</td><td>Aktif</td></tr>
-        </table>
-        <br>
-        <button style="background: #6c757d;" onclick="logout()">Logout</button>
-    </div>
+h4 {
+    color: #9a4b0b;
+}
 
-</div>
+p {
+    line-height: 1.6;
+}
 
-<script>
-    function login() {
-        const role = document.getElementById('role-select').value;
-        document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
-        if(role === 'mahasiswa') {
-            document.getElementById('mahasiswa-section').classList.add('active');
-        } else if(role === 'dosen') {
-            document.getElementById('dosen-section').classList.add('active');
-        } else if(role === 'admin') {
-            document.getElementById('admin-section').classList.add('active');
-        }
+.alert {
+    background: #fff1dc;
+    padding: 14px 16px;
+    margin-bottom: 22px;
+    border-radius: 10px;
+    color: #8a4b12;
+    border: 1px solid #fed7aa;
+    line-height: 1.6;
+}
+
+.section {
+    display: none;
+    margin-top: 20px;
+    border-top: 1px solid #ffedd5;
+    padding-top: 22px;
+}
+
+.active {
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #75401b;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 11px 12px;
+    box-sizing: border-box;
+    border: 1px solid #e7c6a5;
+    border-radius: 9px;
+    background: #fffdf9;
+    color: #4a3528;
+    font-family: inherit;
+    font-size: 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #f59e0b;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.16);
+}
+
+button {
+    background: #f59e0b;
+    color: #ffffff;
+    border: none;
+    padding: 11px 18px;
+    cursor: pointer;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background 0.2s, transform 0.2s;
+}
+
+button:hover {
+    background: #d97706;
+    transform: translateY(-1px);
+}
+
+button:focus-visible {
+    outline: 3px solid #fdba74;
+    outline-offset: 3px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th,
+td {
+    border: 1px solid #f3dfca;
+    padding: 11px;
+    text-align: left;
+}
+
+th {
+    background: #ffedd5;
+    color: #9a4b0b;
+}
+
+tr:nth-child(even) {
+    background: #fffaf4;
+}
+
+#nilai-output,
+#wall-diskusi {
+    background: #fffaf4;
+    padding: 14px;
+    border: 1px solid #f3dfca;
+    border-radius: 10px;
+    overflow-wrap: anywhere;
+}
+
+#wall-diskusi p {
+    background: #ffffff;
+    border: 1px solid #f5dfc8;
+    border-left: 4px solid #fb923c;
+    padding: 12px;
+    border-radius: 7px;
+    margin: 0 0 10px;
+}
+
+#wall-diskusi p:last-child {
+    margin-bottom: 0;
+}
+
+#status-upload,
+#status-dosen {
+    color: #15803d;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 14px 10px;
     }
 
-    function logout() {
-        document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
-        document.getElementById('login-section').classList.add('active');
+    .container {
+        padding: 18px;
+        border-radius: 13px;
     }
 
-    function uploadTugas() {
-        const fileInput = document.getElementById('file-tugas');
-        const status = document.getElementById('status-upload');
-        if(fileInput.files.length > 0) {
-            status.innerText = `Simulasi: berkas "${fileInput.files[0].name}" dipilih. Berkas belum diunggah ke server.`;
-        } else {
-            status.style.color = 'red';
-            status.innerText = 'Pilih berkas tugas terlebih dahulu!';
-        }
+    h1 {
+        font-size: 22px;
     }
 
-    function loadNilai() {
-        const npm = document.getElementById('target-npm').value;
-        const output = document.getElementById('nilai-output');
-        output.innerHTML = `<p><b>Menampilkan data transkrip untuk ID/NPM: ${npm}</b></p>
-            <table>
-                <tr><th>Mata Kuliah</th><th>Nilai</th></tr>
-                <tr><td>Keamanan Perangkat Lunak</td><td>${npm === '24781088' ? 'A (88)' : 'B+ (78) - Data Mahasiswa Lain'}</td></tr>
-                <tr><td>Pemrograman Web</td><td>${npm === '24781088' ? 'AB (85)' : 'A (92) - Data Mahasiswa Lain'}</td></tr>
-            </table>`;
+    th,
+    td {
+        padding: 8px;
+        font-size: 13px;
     }
 
-    function simpanNilaiDosen() {
-        const npm = document.getElementById('input-npm-dosen').value;
-        const status = document.getElementById('status-dosen');
-        if(npm) {
-            status.innerText = `Berhasil memperbarui data nilai untuk mahasiswa dengan NPM: ${npm}`;
-        } else {
-            status.style.color = 'red';
-            status.innerText = 'Masukkan NPM mahasiswa dengan benar!';
-        }
+    button {
+        max-width: 100%;
     }
-
-    function kirimDiskusi() {
-        const pesan = document.getElementById('pesan-diskusi').value;
-        const wall = document.getElementById('wall-diskusi');
-        wall.innerHTML += `<p><b>Budi (24781088):</b> ${pesan}</p>`;
-        document.getElementById('pesan-diskusi').value = '';
-    }
-</script>
-
-</body>
-</html>
+}
