@@ -1,211 +1,528 @@
 
-* {
-    box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Kampus Fiktif - 24781088</title>
 
-body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #fff7ed, #ffedd5);
-    color: #4a3528;
-    margin: 0;
-    padding: 30px 16px;
-    min-height: 100vh;
-}
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-.container {
-    max-width: 850px;
-    background: #ffffff;
-    padding: 28px;
-    border-radius: 18px;
-    box-shadow: 0 8px 28px rgba(154, 83, 24, 0.10);
-    margin: auto;
-    border: 1px solid #fed7aa;
-}
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #fff7ed, #ffedd5);
+            color: #4a3528;
+            margin: 0;
+            padding: 30px 16px;
+            min-height: 100vh;
+        }
 
-h1 {
-    color: #c25b12;
-    text-align: center;
-    font-size: 27px;
-    margin-top: 5px;
-    margin-bottom: 24px;
-}
+        .container {
+            max-width: 850px;
+            background: #ffffff;
+            padding: 28px;
+            border-radius: 18px;
+            box-shadow: 0 8px 28px rgba(154, 83, 24, 0.10);
+            margin: auto;
+            border: 1px solid #fed7aa;
+        }
 
-h2 {
-    color: #c25b12;
-    border-bottom: 2px solid #ffedd5;
-    padding-bottom: 10px;
-}
+        h1 {
+            color: #c25b12;
+            text-align: center;
+            font-size: 27px;
+            margin: 5px 0 24px;
+        }
 
-h3 {
-    color: #d97706;
-    margin-top: 28px;
-}
+        h2 {
+            color: #c25b12;
+            border-bottom: 2px solid #ffedd5;
+            padding-bottom: 10px;
+        }
 
-h4 {
-    color: #9a4b0b;
-}
+        h3 {
+            color: #d97706;
+            margin-top: 28px;
+        }
 
-p {
-    line-height: 1.6;
-}
+        h4 {
+            color: #9a4b0b;
+        }
 
-.alert {
-    background: #fff1dc;
-    padding: 14px 16px;
-    margin-bottom: 22px;
-    border-radius: 10px;
-    color: #8a4b12;
-    border: 1px solid #fed7aa;
-    line-height: 1.6;
-}
+        p {
+            line-height: 1.6;
+        }
 
-.section {
-    display: none;
-    margin-top: 20px;
-    border-top: 1px solid #ffedd5;
-    padding-top: 22px;
-}
+        .alert {
+            background: #fff1dc;
+            padding: 14px 16px;
+            margin-bottom: 22px;
+            border-radius: 10px;
+            color: #8a4b12;
+            border: 1px solid #fed7aa;
+            line-height: 1.6;
+        }
 
-.active {
-    display: block;
-}
+        .section {
+            display: none;
+            margin-top: 20px;
+            border-top: 1px solid #ffedd5;
+            padding-top: 22px;
+        }
 
-.form-group {
-    margin-bottom: 18px;
-}
+        .active {
+            display: block;
+        }
 
-label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #75401b;
-}
+        .form-group {
+            margin-bottom: 18px;
+        }
 
-input,
-select,
-textarea {
-    width: 100%;
-    padding: 11px 12px;
-    box-sizing: border-box;
-    border: 1px solid #e7c6a5;
-    border-radius: 9px;
-    background: #fffdf9;
-    color: #4a3528;
-    font-family: inherit;
-    font-size: 14px;
-    transition: border-color 0.2s, box-shadow 0.2s;
-}
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #75401b;
+        }
 
-textarea {
-    min-height: 100px;
-    resize: vertical;
-}
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 11px 12px;
+            border: 1px solid #e7c6a5;
+            border-radius: 9px;
+            background: #fffdf9;
+            color: #4a3528;
+            font-family: inherit;
+            font-size: 14px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
 
-input:focus,
-select:focus,
-textarea:focus {
-    outline: none;
-    border-color: #f59e0b;
-    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.16);
-}
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
 
-button {
-    background: #f59e0b;
-    color: #ffffff;
-    border: none;
-    padding: 11px 18px;
-    cursor: pointer;
-    border-radius: 9px;
-    font-size: 14px;
-    font-weight: bold;
-    transition: background 0.2s, transform 0.2s;
-}
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #f59e0b;
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.16);
+        }
 
-button:hover {
-    background: #d97706;
-    transform: translateY(-1px);
-}
+        button {
+            background: #f59e0b;
+            color: #ffffff;
+            border: none;
+            padding: 11px 18px;
+            cursor: pointer;
+            border-radius: 9px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: background 0.2s, transform 0.2s;
+        }
 
-button:focus-visible {
-    outline: 3px solid #fdba74;
-    outline-offset: 3px;
-}
+        button:hover {
+            background: #d97706;
+            transform: translateY(-1px);
+        }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 12px;
-    background: #ffffff;
-    border-radius: 8px;
-    overflow: hidden;
-}
+        button:focus-visible {
+            outline: 3px solid #fdba74;
+            outline-offset: 3px;
+        }
 
-th,
-td {
-    border: 1px solid #f3dfca;
-    padding: 11px;
-    text-align: left;
-}
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+        }
 
-th {
-    background: #ffedd5;
-    color: #9a4b0b;
-}
+        th,
+        td {
+            border: 1px solid #f3dfca;
+            padding: 11px;
+            text-align: left;
+        }
 
-tr:nth-child(even) {
-    background: #fffaf4;
-}
+        th {
+            background: #ffedd5;
+            color: #9a4b0b;
+        }
 
-#nilai-output,
-#wall-diskusi {
-    background: #fffaf4;
-    padding: 14px;
-    border: 1px solid #f3dfca;
-    border-radius: 10px;
-    overflow-wrap: anywhere;
-}
+        tr:nth-child(even) {
+            background: #fffaf4;
+        }
 
-#wall-diskusi p {
-    background: #ffffff;
-    border: 1px solid #f5dfc8;
-    border-left: 4px solid #fb923c;
-    padding: 12px;
-    border-radius: 7px;
-    margin: 0 0 10px;
-}
+        #nilai-output,
+        #wall-diskusi {
+            background: #fffaf4;
+            padding: 14px;
+            border: 1px solid #f3dfca;
+            border-radius: 10px;
+            overflow-wrap: anywhere;
+        }
 
-#wall-diskusi p:last-child {
-    margin-bottom: 0;
-}
+        #wall-diskusi p {
+            background: #ffffff;
+            border: 1px solid #f5dfc8;
+            border-left: 4px solid #fb923c;
+            padding: 12px;
+            border-radius: 7px;
+            margin: 0 0 10px;
+            white-space: pre-wrap;
+        }
 
-#status-upload,
-#status-dosen {
-    color: #15803d;
-    font-weight: bold;
-    margin-top: 10px;
-}
+        #wall-diskusi p:last-child {
+            margin-bottom: 0;
+        }
 
-@media (max-width: 600px) {
-    body {
-        padding: 14px 10px;
+        #status-upload,
+        #status-dosen {
+            color: #15803d;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 14px 10px;
+            }
+
+            .container {
+                padding: 18px;
+                border-radius: 13px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            th,
+            td {
+                padding: 8px;
+                font-size: 13px;
+            }
+
+            button {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+
+    <h1>Portal Akademik Kampus Fiktif (NPM: 24781088)</h1>
+
+    <div class="alert">
+        <strong>Simulasi Keamanan:</strong>
+        Portal latihan ini menggunakan data sintetis untuk pemeriksaan
+        keamanan fitur akademik. Lakukan pengujian hanya pada portal ini
+        dan jangan memasukkan data pribadi atau data nyata.
+    </div>
+
+    <!-- Panel Login -->
+    <div id="login-section" class="section active">
+        <h2>Login Portal Akademik</h2>
+
+        <div class="form-group">
+            <label for="role-select">Pilih Peran Akun Sintetis:</label>
+            <select id="role-select">
+                <option value="mahasiswa">Mahasiswa (Budi - 24781088)</option>
+                <option value="dosen">Dosen (Dr. Siti - DSN01)</option>
+                <option value="admin">Admin Sistem (Admin01)</option>
+            </select>
+        </div>
+
+        <button type="button" onclick="login()">Masuk ke Portal</button>
+    </div>
+
+    <!-- Dashboard Mahasiswa -->
+    <div id="mahasiswa-section" class="section">
+        <h2>Dashboard Mahasiswa</h2>
+        <p>Selamat datang, <b>Budi (NPM: 24781088)</b></p>
+
+        <h3>Unggah Tugas Kuliah</h3>
+
+        <div class="form-group">
+            <label for="mk-tugas">Pilih Mata Kuliah:</label>
+            <select id="mk-tugas">
+                <option>Keamanan Perangkat Lunak</option>
+                <option>Pemrograman Web</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="file-tugas">Pilih Berkas Tugas (PDF / DOCX / ZIP):</label>
+            <input type="file" id="file-tugas"
+                   accept=".pdf,.docx,.zip">
+        </div>
+
+        <button type="button" onclick="uploadTugas()">Kirim Tugas</button>
+        <p id="status-upload" aria-live="polite"></p>
+
+        <h3>Transkrip Nilai Mahasiswa</h3>
+        <p>Masukkan ID / NPM mahasiswa untuk melihat transkrip nilai.</p>
+
+        <div class="form-group">
+            <label for="target-npm">ID / NPM Mahasiswa:</label>
+            <input type="text" id="target-npm" value="24781088">
+            <button type="button" onclick="loadNilai()">Muat Nilai</button>
+        </div>
+
+        <div id="nilai-output">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mata Kuliah</th>
+                        <th>Nilai</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Keamanan Perangkat Lunak</td>
+                        <td>A (88)</td>
+                    </tr>
+                    <tr>
+                        <td>Pemrograman Web</td>
+                        <td>AB (85)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Forum Diskusi -->
+        <h3>Forum Diskusi Publik</h3>
+
+        <div class="form-group">
+            <label for="pesan-diskusi">Tulis komentar atau pertanyaan:</label>
+            <textarea id="pesan-diskusi"
+                      placeholder="Tulis komentar atau pertanyaan..."></textarea>
+            <button type="button" onclick="kirimDiskusi()">Kirim Pesan</button>
+        </div>
+
+        <h4>Dinding Diskusi:</h4>
+
+        <div id="wall-diskusi"
+             style="background:#fffaf4; padding:14px; border:1px solid #f3dfca; border-radius:10px;">
+            <p><b>Siti:</b> Halo teman-teman, apakah tugas minggu ini sudah dikumpul?</p>
+        </div>
+
+        <br>
+        <button type="button" onclick="logout"
+                style="background:#a16207;" hidden>Logout</button>
+        <button type="button" onclick="logout()"
+                style="background:#a16207;">Logout</button>
+    </div>
+
+    <!-- Dashboard Dosen -->
+    <div id="dosen-section" class="section">
+        <h2>Dashboard Dosen</h2>
+        <p>Selamat datang, <b>Dr. Siti (Dosen Pengampu)</b></p>
+        <p>Gunakan panel ini untuk memasukkan atau memperbarui nilai mahasiswa.</p>
+
+        <div class="form-group">
+            <label for="input-npm-dosen">NPM Mahasiswa:</label>
+            <input type="text" id="input-npm-dosen"
+                   placeholder="Contoh: 24781088">
+        </div>
+
+        <div class="form-group">
+            <label for="input-nilai-dosen">Nilai Baru:</label>
+            <input type="text" id="input-nilai-dosen"
+                   placeholder="Contoh: A (90)">
+        </div>
+
+        <button type="button" onclick="simpanNilaiDosen()">Simpan Nilai</button>
+        <p id="status-dosen" aria-live="polite"></p>
+
+        <br>
+        <button type="button" onclick="logout()"
+                style="background:#a16207;">Logout</button>
+    </div>
+
+    <!-- Dashboard Admin -->
+    <div id="admin-section" class="section">
+        <h2>Dashboard Admin</h2>
+        <p>Selamat datang, <b>Administrator Sistem</b></p>
+        <p>Pengelolaan data akun pengguna sintetis:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Username / NPM</th>
+                    <th>Peran</th>
+                    <th>Status Akun</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Budi (24781088)</td>
+                    <td>Mahasiswa</td>
+                    <td>Aktif</td>
+                </tr>
+                <tr>
+                    <td>Dr. Siti (DSN01)</td>
+                    <td>Dosen</td>
+                    <td>Aktif</td>
+                </tr>
+                <tr>
+                    <td>Admin01</td>
+                    <td>Admin Sistem</td>
+                    <td>Aktif</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br>
+        <button type="button" onclick="logout()"
+                style="background:#a16207;">Logout</button>
+    </div>
+
+</div>
+
+<script>
+    function login() {
+        const role = document.getElementById('role-select').value;
+
+        document.querySelectorAll('.section').forEach(function (el) {
+            el.classList.remove('active');
+        });
+
+        const section = document.getElementById(role + '-section');
+
+        if (section) {
+            section.classList.add('active');
+        }
     }
 
-    .container {
-        padding: 18px;
-        border-radius: 13px;
+    function logout() {
+        document.querySelectorAll('.section').forEach(function (el) {
+            el.classList.remove('active');
+        });
+
+        document.getElementById('login-section').classList.add('active');
     }
 
-    h1 {
-        font-size: 22px;
+    function uploadTugas() {
+        const fileInput = document.getElementById('file-tugas');
+        const status = document.getElementById('status-upload');
+
+        status.style.color = '#15803d';
+
+        if (fileInput.files.length > 0) {
+            status.textContent =
+                `Simulasi: berkas "${fileInput.files[0].name}" dipilih. ` +
+                'Berkas belum diunggah ke server.';
+        } else {
+            status.style.color = '#b91c1c';
+            status.textContent = 'Pilih berkas tugas terlebih dahulu!';
+        }
     }
 
-    th,
-    td {
-        padding: 8px;
-        font-size: 13px;
+    function loadNilai() {
+        const npm = document.getElementById('target-npm').value.trim();
+        const output = document.getElementById('nilai-output');
+
+        // Susun hasil dengan DOM agar input tidak ditafsirkan sebagai HTML.
+        output.replaceChildren();
+
+        const keterangan = document.createElement('p');
+        const tebal = document.createElement('b');
+        tebal.textContent = 'Menampilkan data transkrip untuk ID/NPM: ' + npm;
+        keterangan.appendChild(tebal);
+        output.appendChild(keterangan);
+
+        const tabel = document.createElement('table');
+        const thead = document.createElement('thead');
+        const barisJudul = document.createElement('tr');
+
+        ['Mata Kuliah', 'Nilai'].forEach(function (judul) {
+            const th = document.createElement('th');
+            th.textContent = judul;
+            barisJudul.appendChild(th);
+        });
+
+        thead.appendChild(barisJudul);
+        tabel.appendChild(thead);
+
+        const tbody = document.createElement('tbody');
+        const dataNilai = [
+            [
+                'Keamanan Perangkat Lunak',
+                npm === '24781088' ? 'A (88)' : 'B+ (78) - Data Mahasiswa Lain'
+            ],
+            [
+                'Pemrograman Web',
+                npm === '24781088' ? 'AB (85)' : 'A (92) - Data Mahasiswa Lain'
+            ]
+        ];
+
+        dataNilai.forEach(function (data) {
+            const tr = document.createElement('tr');
+
+            data.forEach(function (isi) {
+                const td = document.createElement('td');
+                td.textContent = isi;
+                tr.appendChild(td);
+            });
+
+            tbody.appendChild(tr);
+        });
+
+        tabel.appendChild(tbody);
+        output.appendChild(tabel);
     }
 
-    button {
-        max-width: 100%;
+    function simpanNilaiDosen() {
+        const npm = document.getElementById('input-npm-dosen').value.trim();
+        const nilai = document.getElementById('input-nilai-dosen').value.trim();
+        const status = document.getElementById('status-dosen');
+
+        status.style.color = '#15803d';
+
+        if (npm && nilai) {
+            status.textContent =
+                `Simulasi: nilai untuk mahasiswa dengan NPM ${npm} ` +
+                `diubah menjadi ${nilai}. Perubahan belum disimpan ke server.`;
+        } else {
+            status.style.color = '#b91c1c';
+            status.textContent = 'Masukkan NPM dan nilai terlebih dahulu!';
+        }
     }
-}
+
+    function kirimDiskusi() {
+        const input = document.getElementById('pesan-diskusi');
+        const pesan = input.value;
+        const wall = document.getElementById('wall-diskusi');
+
+        if (!pesan.trim()) {
+            return;
+        }
+
+        // Nama dan pesan dibuat sebagai teks, bukan HTML dari input pengguna.
+        const paragraf = document.createElement('p');
+        const nama = document.createElement('b');
+
+        nama.textContent = 'Budi (24781088): ';
+        paragraf.appendChild(nama);
+        paragraf.appendChild(document.createTextNode(pesan));
+
+        wall.appendChild(paragraf);
+        input.value = '';
+    }
+</script>
+
+</body>
+</html>
+
