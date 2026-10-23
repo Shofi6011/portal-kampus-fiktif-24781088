@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Portal Kampus Fiktif - 24781088</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 20px; }
+        .container { max-width: 800px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin: auto; }
+        h1, h2, h3 { color: #333; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select, textarea { width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+        button { background: #007bff; color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 4px; }
+        button:hover { background: #0056b3; }
+        .section { display: none; margin-top: 20px; border-top: 1px solid #ddd; padding-top: 20px; }
+        .active { display: block; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background: #f8f9fa; }
+        .alert { background: #ffeeba; padding: 10px; margin-bottom: 15px; border-radius: 4px; color: #856404; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Portal Akademik Kampus Fiktif (NPM: 24781088)</h1>
+    <div class="alert">
+        <strong>Simulasi Keamanan:</strong> Portal ini dirancang dengan data sintetis serta menguji kerentanan <em>Stored XSS</em> pada forum diskusi dan <em>IDOR</em> pada transkrip nilai.
+    </div>
+
+    <!-- Panel Login -->
+    <div id="login-section" class="section active">
+        <h2>Login Portal Akademik</h2>
+        <div class="form-group">
+            <label>Pilih Peran Akun Sintetis:</label>
+            <select id="role-select">
+                <option value="mahasiswa">Mahasiswa (Budi - 24781088)</option>
+                <option value="dosen">Dosen (Dr. Siti - DSN01)</option>
+                <option value="admin">Admin Sistem (Admin01)</option>
+            </select>
+        </div>
+        <button onclick="login()">Masuk ke Portal</button>
+    </div>
+
+    <!-- Panel Dashboard Mahasiswa -->
+    <div id="mahasiswa-section" class="section">
+        <h2>Dashboard Mahasiswa</h2>
+        <p>Selamat datang, <b>Budi (NPM: 24781088)</b></p>
+        
+        <!-- 1. Unggah Tugas -->
+        <h3>Unggah Tugas Kuliah</h3>
+        <div class="form-group">
+            <label>Pilih Mata Kuliah:</label>
+            <select id="mk-tugas">
+                <option>Keamanan Perangkat Lunak</option>
+                <option>Pemrograman Web</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Pilih Berkas Tugas (PDF / DOCX / ZIP):</label>
+            <input type="file" id="file-tugas">
+        </div>
+        <button onclick="uploadTugas()">Kirim Tugas</button>
+        <p id="status-upload" style="color: green; font-weight: bold; margin-top: 5px;"></p>
+
+        <!-- 2. Transkrip Nilai (IDOR) -->
+        <h3>Transkrip Nilai (Simulasi IDOR)</h3>
+        <p>Ubah ID / NPM Target untuk melihat data nilai mahasiswa lain tanpa otorisasi:</p>
+        <div class="form-group">
+            <label>ID / NPM Mahasiswa:</label>
+            <input type="text" id="target-npm" value="24781088">
+            <button onclick="loadNilai()">Muat Nilai</button>
+        </div>
+        <div id="nilai-output">
+            <table>
+                <tr><th>Mata Kuliah</th><th>Nilai</th></tr>
+                <tr><td>Keamanan Perangkat Lunak</td><td>A (88)</td></tr>
+                <tr><td>Pemrograman Web</td><td>AB (85)</td></tr>
+            </table>
+        </div>
+
+        <!-- 3. Forum Diskusi (Stored XSS) -->
+        <h3>Forum Diskusi Publik (Rawan Stored XSS)</h3>
+        <div class="form-group">
+            <textarea id="pesan-diskusi" placeholder="Tulis komentar atau masukkan payload &lt;script&gt;alert('XSS')&lt;/script&gt;..."></textarea>
+            <button onclick="kirimDiskusi()">Kirim Pesan</button>
+        </div>
+        <h4>Dinding Diskusi:</h4>
+        <div id="wall-diskusi" style="background: #fafafa; padding: 10px; border: 1px solid #eee;">
+            <p><b>Siti:</b> Halo teman-teman, apakah tugas minggu ini sudah dikumpul?</p>
+        </div>
+        <br>
+        <button style="background: #6c757d;" onclick="logout()">Logout</button>
+    </div>
+
+    <!-- Panel Dashboard Dosen -->
+    <div id="dosen-section" class="section">
+        <h2>Dashboard Dosen</h2>
+        <p>Selamat datang, <b>Dr. Siti (Dosen Pengampu)</b></p>
+        <p>Gunakan panel ini untuk memasukkan atau memperbarui nilai mahasiswa.</p>
+        <div class="form-group">
+            <label>NPM Mahasiswa:</label>
+            <input type="text" id="input-npm-dosen" placeholder="Contoh: 24781088">
+        </div>
+        <div class="form-group">
+            <label>Nilai Baru:</label>
+            <input type="text" id="input-nilai-dosen" placeholder="Contoh: A (90)">
+        </div>
+        <button onclick="simpanNilaiDosen()">Simpan Nilai</button>
+        <p id="status-dosen" style="color: green; font-weight: bold; margin-top: 5px;"></p>
+        <br>
+        <button style="background: #6c757d;" onclick="logout()">Logout</button>
+    </div>
+
+    <!-- Panel Dashboard Admin -->
+    <div id="admin-section" class="section">
+        <h2>Dashboard Admin</h2>
+        <p>Selamat datang, <b>Administrator Sistem</b></p>
+        <p>Pengelolaan data akun pengguna sintetis:</p>
+        <table>
+            <tr><th>Username / NPM</th><th>Peran</th><th>Status Akun</th></tr>
+            <tr><td>Budi (24781088)</td><td>Mahasiswa</td><td>Aktif</td></tr>
+            <tr><td>Dr. Siti (DSN01)</td><td>Dosen</td><td>Aktif</td></tr>
+            <tr><td>Admin01</td><td>Admin Sistem</td><td>Aktif</td></tr>
+        </table>
+        <br>
+        <button style="background: #6c757d;" onclick="logout()">Logout</button>
+    </div>
+
+</div>
+
+<script>
+    function login() {
+        const role = document.getElementById('role-select').value;
+        document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
+        if(role === 'mahasiswa') {
+            document.getElementById('mahasiswa-section').classList.add('active');
+        } else if(role === 'dosen') {
+            document.getElementById('dosen-section').classList.add('active');
+        } else if(role === 'admin') {
+            document.getElementById('admin-section').classList.add('active');
+        }
+    }
+
+    function logout() {
+        document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
+        document.getElementById('login-section').classList.add('active');
+    }
+
+    function uploadTugas() {
+        const fileInput = document.getElementById('file-tugas');
+        const status = document.getElementById('status-upload');
+        if(fileInput.files.length > 0) {
+            status.innerText = `Sukses: Berkas "${fileInput.files[0].name}" berhasil diunggah ke server kampus!`;
+        } else {
+            status.style.color = 'red';
+            status.innerText = 'Pilih berkas tugas terlebih dahulu!';
+        }
+    }
+
+    function loadNilai() {
+        const npm = document.getElementById('target-npm').value;
+        const output = document.getElementById('nilai-output');
+        output.innerHTML = `<p><b>Menampilkan data transkrip untuk ID/NPM: ${npm}</b></p>
+            <table>
+                <tr><th>Mata Kuliah</th><th>Nilai</th></tr>
+                <tr><td>Keamanan Perangkat Lunak</td><td>${npm === '24781088' ? 'A (88)' : 'B+ (78) - Data Mahasiswa Lain'}</td></tr>
+                <tr><td>Pemrograman Web</td><td>${npm === '24781088' ? 'AB (85)' : 'A (92) - Data Mahasiswa Lain'}</td></tr>
+            </table>`;
+    }
+
+    function simpanNilaiDosen() {
+        const npm = document.getElementById('input-npm-dosen').value;
+        const status = document.getElementById('status-dosen');
+        if(npm) {
+            status.innerText = `Berhasil memperbarui data nilai untuk mahasiswa dengan NPM: ${npm}`;
+        } else {
+            status.style.color = 'red';
+            status.innerText = 'Masukkan NPM mahasiswa dengan benar!';
+        }
+    }
+
+    function kirimDiskusi() {
+        const pesan = document.getElementById('pesan-diskusi').value;
+        const wall = document.getElementById('wall-diskusi');
+        wall.innerHTML += `<p><b>Budi (24781088):</b> ${pesan}</p>`;
+        document.getElementById('pesan-diskusi').value = '';
+    }
+</script>
+
+</body>
+</html>
